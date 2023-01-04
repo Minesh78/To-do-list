@@ -1,37 +1,246 @@
-*{
-    padding: 0;
-    margin: 0;
+@import url('https://fonts.googleapis.com/css2?family=Work+Sans&display=swap');
+
+:root{
+    --clr-primary: #255296;
+    
+    
+}
+
+*,
+*::before,
+*::after {
+    font-family: inherit;
     box-sizing: border-box;
 }
 
-body{
-    background-image: linear-gradient(160deg,rgb(99 102 241),rgb(168 85 247),rgb(236 72 153));
-    color: white;
-    font-family: "Sanchez",sans-serif;
-    min-height: 100vh ;
-}
-
-header{
+body {
+    margin: 0;
+    font-family: 'Work Sans', sans-serif;
+    
     font-size: 1.5rem;
+    background-color: var(--clr-primary);
+    color: rgb(255, 255, 255);
+
+    display: grid;
+    grid:
+        "header header header header" auto
+        "...... lists active ......" auto /
+        1fr minmax(100px, 300px) minmax(250px, 500px ) 1fr;
 
 }
 
-header, form{
-    min-height: 20vh;
-    display: flex;
-    justify-content: center;
-    align-items: center;
+.title{
+    grid-area: header;
+    text-align: center;
+    font-size: calc(7vw + 2rem);
+    letter-spacing: 3px;
+    margin: 0.2em 0.5em 0.7em 0.5em;
+   
+}
+.all-tasks{
+    grid-area: lists;
+
 }
 
-form input, form button{
-    padding: 0.5rem;
-    font-size: 2rem;
-    border: none;
-    background: whitesmoke;
-}
+.task-list{
+    line-height: 1.7;
+    font-size: 1.2rem;
+    list-style: circle;
+    padding-left: 1.1em;
 
-form button{
-    color:rgb(168 85 247);
-    background: white ;
+}
+.list-name{
     cursor: pointer;
+}
+.list-name:hover{
+    opacity: 0.8 ;
+}
+form{
+    display: flex;
+}
+.btn{
+    cursor: pointer;
+    background: transparent;
+    border: 0;
+    padding: 0;
+    color: inherit;
+}
+
+.btn.create{
+    font-size: 1.5rem;
+    font-weight: 900;
+    margin-right: 0.25em;
+    opacity:0.7;
+
+    transition: opacity 200ms ease-in-out;
+}
+
+.btn.create:hover{
+    opacity:1;
+}
+
+.btn.delete{
+    font-size: 1.2rem;
+    border: 2px solid snow;
+    padding: 2px 10px;
+    border-radius: 0.9rem;
+    opacity: 0.6;
+    transition: opacity 200ms;
+}
+
+.btn.delete:hover{
+    opacity: 1;
+    box-shadow: inset 0 0 5px;
+
+}
+.new{
+    background: transparent;
+    border: 0;
+    color: inherit;
+    border-bottom:1px solid currentColor ;
+    font-size: inherit;
+    outline: none;
+
+    transition: border-bottom 150ms ease-in-out;
+    order: 2;
+}
+
+.new.task::placeholder{
+    color: black;
+}
+.new::placeholder{
+    opacity: 0.4;
+    color:white;
+    padding: 0.25em;
+}
+
+.new:focus{
+    border-bottom-width: 3px ;
+}
+
+.new:focus::placeholder{
+    opacity: 0.1;
+}
+.new.list{
+    font-size: 0.9rem;
+}
+
+.new.list{
+    margin-bottom: 0;
+}
+.active-list{
+    font-weight: 1000;
+}
+.todo-list{
+    --spacer: 1.5rem;
+
+    grid-area: active ;
+    background-color: whitesmoke ;
+    color: rgb(0, 0, 0);
+    border-radius: 2.5rem;
+    box-shadow: 0 0 10px;
+}
+
+.todo-header{
+    padding: var(--spacer);
+    background: #e4e4e4;
+   display: flex;
+   align-items: center;
+   justify-content: space-between;
+   border-radius: 2.5rem 2.5rem 0 0;
+}
+
+.list-title{
+    margin: 0 1em 0 0;
+}
+
+.task-count{
+   margin: 0;
+   font-size: 1rem;
+}
+
+.todo-body{
+    padding: var(--spacer);
+    position: relative;
+}
+.new-task-creator .create{
+    color: var(--clr-primary);
+}
+[type ="checkbox"]{
+    opacity: 0;
+    position: absolute;
+}
+.task label{
+    display: flex;
+    align-items: center;
+    position: relative;
+    margin-bottom: 1.25em;
+    
+
+}
+.task{
+    position: relative;
+    
+}
+.task::after{
+    content: "";
+    position: absolute;
+    right: 0;
+    left: 0;
+    bottom: -0.5em;
+    height: 1px;
+    background: currentColor;
+    opacity: 0.2;
+}
+.custom-checkbox{
+    --size:0.75em;
+    display: inline-block;
+    width: var(--size);
+    height: var(--size);
+    margin-right: var(--size);
+    cursor: pointer;
+    border: 2px solid currentColor;
+    border-radius: 50%;
+    transform: scale(1);
+    transition: transform 200ms ease-in-out;
+}
+
+.task:hover .custom-checkbox,
+[type ="checkbox"]:focus + label .custom-checkbox{
+    transform: scale(1.2);
+    color:var(--clr-primary) ;
+
+}
+
+[type ="checkbox"]:checked + label .custom-checkbox{
+    background:var(--clr-primary) ;
+    border-color: var(--clr-primary);
+    box-shadow: inset 0 0 0px 2px whitesmoke;
+    text-decoration: line-through;
+}
+
+[type ="checkbox"]:checked + label{
+    opacity: 0.5;
+    text-decoration: line-through 2px;
+    
+}
+
+.task lasbel::after{
+    content: "";
+    position: absolute;
+    left: 0;
+    right: 0;
+    height: 3px;
+    background: currentColor;
+}
+
+.delete-stuff{
+    display: flex;
+    justify-content: space-evenly;
+    position: absolute;
+    width: 100%;
+    left: 0;
+    bottom: -45px;
+    color: white;
+
 }
