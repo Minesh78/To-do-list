@@ -30,6 +30,7 @@ body {
 }
 
 .title{
+    color: rgb(0, 242, 255);
     grid-area: header;
     text-align: center;
     font-size: calc(7vw + 2rem);
