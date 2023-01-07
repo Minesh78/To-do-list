@@ -25,7 +25,9 @@ body {
     grid:
         "header header header header" auto
         "...... lists active ......" auto /
-        1fr minmax(100px, 300px) minmax(250px, 500px ) 1fr;
+        1fr minmax(100px, 300px) minmax(250px, 500px ) 1fr
+      
+        
 
 }
 
@@ -41,6 +43,9 @@ body {
 .all-tasks{
     grid-area: lists;
 
+}
+.delete-stuff{
+    grid-area: active;
 }
 
 .task-list{
@@ -163,6 +168,7 @@ form{
 .todo-body{
     padding: var(--spacer);
     position: relative;
+   
 }
 .new-task-creator .create{
     color: var(--clr-primary);
@@ -243,5 +249,6 @@ form{
     left: 0;
     bottom: -45px;
     color: white;
-
+    
 }
+
