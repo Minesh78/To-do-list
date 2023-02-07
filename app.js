@@ -2,11 +2,9 @@ const listsContainer = document.querySelector('[data-lists]');
 const newListForm = document.querySelector('[data-new-list-form]');
 const newListInput = document.querySelector('[data-new-list-input]');
 const deleteListButton = document.querySelector('[data-delete-list-button]');
-
 const listDisplayContainer = document.querySelector('[data-list-display-container]')
 const listTitleElement = document.querySelector('[data-list-title]')
 const listCountElement = document.querySelector('[data-list-count]')
-
 const tasksContainer = document.querySelector('[data-tasks]')
 const taskTemplate = document.getElementById('task-template')
 const newTaskForm = document.querySelector('[data-new-task-form]')
@@ -32,8 +30,7 @@ tasksContainer.addEventListener('click', e=>{
     selectedTask.complete = e.target.checked
     save()
     renderTaskCount(selectedList)
-   }
-    
+   }   
 })
 
 clearCompletedTasksButton.addEventListener('click',e =>{
@@ -97,7 +94,9 @@ function render(){
 
     const selectedList = lists.find(list => list.id === selectedListId)
     if(selectedListId == null){
-        listDisplayContainer.style.display = 'none'
+       
+        listDisplayContainer.style.display ='none'
+        
     }else{
         listDisplayContainer.style.display = ''
         listTitleElement.innerText = selectedList.name
